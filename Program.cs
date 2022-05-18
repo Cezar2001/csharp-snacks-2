@@ -235,6 +235,8 @@ foreach (string s in listString)
     Console.WriteLine(s);
 
 
+
+Console.WriteLine("\n");
 //Esercizio finale
 //Data una lista di coppie <DateTime, int>,
 //stampale ordinate rispetto alla stringa
@@ -242,17 +244,51 @@ foreach (string s in listString)
 //Tuple<string, int> quindi una lista di coppie sarà
 List<Tuple<string, int>> lcoppie = new List<Tuple<string, int>>()
 {
-    new Tuple<string, int> ("uno", 1),
-    new Tuple<string, int> ("due", 2),
-    new Tuple<string, int> ("otto", 8),
-    new Tuple<string, int> ("dodici", 12),
-    new Tuple<string, int> ("venti", 20),
+    new Tuple<string, int> ("uno", 21),
+    new Tuple<string, int> ("due", 1),
+    new Tuple<string, int> ("otto", 85),
+    new Tuple<string, int> ("dodici", 40),
+    new Tuple<string, int> ("venti", 30),
+};
+//ordine per il primo campo, cioè per stringhe
+lcoppie.Sort();
+
+//metodo 1 stampa stringhe
+lcoppie.ForEach(x => Console.WriteLine(x));
+
+Console.WriteLine("\n");
+
+//metodo 2 stampa stringhe
+Console.WriteLine(String.Join("\t", lcoppie));
+
+//------------------//
+
+//ordine per il secondo campo, cioè per int
+lcoppie.Sort((t1, t2) => t1.Item2.CompareTo(t2.Item2));
+Console.WriteLine(String.Join("\t", lcoppie));
+
+//alternativa ordine int
+lcoppie.Sort((t1, t2) => t1.Item2-t2.Item2);
+Console.WriteLine(String.Join("\t", lcoppie));
+
+
+List<Tuple<int, int, int>> lterne = new List<Tuple<int, int, int>>()
+{
+    new Tuple<int, int, int> (1, 3, 2),
+    new Tuple<int, int, int> (5, 36, 8),
+    new Tuple<int, int, int> (5, 41, 3),
+    new Tuple<int, int, int> (1, 27, 62),
+    new Tuple<int, int, int> (18, 1, 4),
+    new Tuple<int, int, int> (2, 0, 23),
 };
 
-listString.Sort((string s1, string s2) => -s1.CompareTo(s2));
+lterne.Sort();
+Console.WriteLine(String.Join("\t", lterne));
 
 
+//--------------------------//
+Console.WriteLine("\n");
 
-
+//utile per verificare la velocità di una parte del codice
 double microseconds = DateTime.Now.Ticks / (TimeSpan.TicksPerMillisecond / 10000);
 Console.WriteLine("microseconds: {0}", microseconds);
